@@ -44,6 +44,7 @@ namespace CalDavSynchronizer.Implementation.Contacts
     private readonly bool _useDefaultFolderItemType;
     
     private const string PR_ASSOCIATED_BIRTHDAY_APPOINTMENT_ID = "http://schemas.microsoft.com/mapi/id/{00062004-0000-0000-C000-000000000046}/804D0102";
+    private const string PR_ASSOCIATED_ANNIVERSARY_APPOINTMENT_ID = "http://schemas.microsoft.com/mapi/id/{00062004-0000-0000-C000-000000000046}/804E0102";
 
     public OutlookContactRepository (IOutlookSession session, string folderId, string folderStoreId, IDaslFilterProvider daslFilterProvider, IQueryOutlookContactItemFolderStrategy queryFolderStrategy, IComWrapperFactory comWrapperFactory, bool useDefaultFolderItemType)
     {
@@ -144,7 +145,8 @@ namespace CalDavSynchronizer.Implementation.Contacts
       DateTime entityVersion,
       IContactItemWrapper entityToUpdate,
       Func<IContactItemWrapper, Task<IContactItemWrapper>> entityModifier,
-      Tcontext context)
+      Tcontext context, 
+      IEntitySynchronizationLogger logger)
     {
       entityToUpdate = await entityModifier (entityToUpdate);
       entityToUpdate.Inner.Save ();
@@ -154,7 +156,8 @@ namespace CalDavSynchronizer.Implementation.Contacts
     public Task<bool> TryDelete (
       string entityId,
       DateTime version,
-      Tcontext context)
+      Tcontext context, 
+      IEntitySynchronizationLogger logger)
     {
       var entityWithId = Get (new[] { entityId }, NullLoadEntityLogger.Instance, default (Tcontext)).Result.SingleOrDefault ();
       if (entityWithId == null)
@@ -162,6 +165,22 @@ namespace CalDavSynchronizer.Implementation.Contacts
 
       using (var contact = entityWithId.Entity)
       {
+        if (!contact.Inner.Anniversary.Equals (OutlookUtility.OUTLOOK_DATE_NONE))
+        {
+          try
+          {
+            Byte[] ba = contact.Inner.GetPropertySafe (PR_ASSOCIATED_ANNIVERSARY_APPOINTMENT_ID);
+            string anniversaryAppointmentItemID = BitConverter.ToString (ba).Replace ("-", string.Empty);
+            IAppointmentItemWrapper anniveraryWrapper = _comWrapperFactory.Create ( _session.GetAppointmentItem (anniversaryAppointmentItemID),
+                                                                                    entryId => _session.GetAppointmentItem (anniversaryAppointmentItemID));
+            anniveraryWrapper.Inner.Delete();
+          }
+          catch (COMException ex)
+          {
+            s_logger.Error ("Could not delete associated Anniversary Appointment.", ex);
+            logger.LogError ("Could not delete associated Anniversary Appointment.", ex);
+          }
+        }
         if (!contact.Inner.Birthday.Equals (OutlookUtility.OUTLOOK_DATE_NONE))
         {
           try
@@ -175,6 +194,7 @@ namespace CalDavSynchronizer.Implementation.Contacts
           catch (COMException ex)
           {
             s_logger.Error ("Could not delete associated Birthday Appointment.", ex);
+            logger.LogError ("Could not delete associated Birthday Appointment.", ex);
           }
         }
         contact.Inner.Delete ();

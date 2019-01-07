@@ -133,6 +133,7 @@ namespace GenSync.Synchronization.States
         _logger = logger;
       }
 
+      public IEntitySynchronizationLogger Logger => _logger;
       public TBtypeEntityId EntityId => _state.KnownData.BtypeId;
       public TBtypeEntityVersion Version => _state._currentBVersion;
 

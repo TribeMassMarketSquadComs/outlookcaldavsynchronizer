@@ -69,7 +69,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
       _configuration = configuration;
     }
 
-    public Task<GoogleContactWrapper> Map1To2 (IContactItemWrapper source, GoogleContactWrapper targetWrapper, IEntityMappingLogger logger, IGoogleContactContext context)
+    public Task<GoogleContactWrapper> Map1To2 (IContactItemWrapper source, GoogleContactWrapper targetWrapper, IEntitySynchronizationLogger logger, IGoogleContactContext context)
     {
       var target = targetWrapper.Contact;
 
@@ -316,8 +316,11 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
       }
     }
 
-    private static void MapAnniversary1To2(IContactItemWrapper source, Contact target, IEntityMappingLogger logger)
+    private void MapAnniversary1To2(IContactItemWrapper source, Contact target, IEntitySynchronizationLogger logger)
     {
+      if (!_configuration.MapAnniversary)
+        return;
+
       var googleAnniversary = target.ContactEntry.Events.FirstOrDefault(e => e.Relation != null && e.Relation.Equals(REL_ANNIVERSARY));
 
       if (googleAnniversary != null)
@@ -342,7 +345,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
       catch (Exception ex)
       {
         s_logger.Warn("Anniversary couldn't be updated from Outlook to Google for '" + source.Inner.FileAs + "': " + ex.Message, ex);
-        logger.LogMappingWarning("Anniversary couldn't be updated from Outlook to Google for '" + source.Inner.FileAs + "': " + ex.Message, ex);
+        logger.LogWarning("Anniversary couldn't be updated from Outlook to Google for '" + source.Inner.FileAs + "': " + ex.Message, ex);
       }
     }
 
@@ -354,7 +357,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
         target.ContactEntry.Birthday = null;
     }
 
-    private void MapPhoto1To2 (ContactItem source, GoogleContactWrapper target, IEntityMappingLogger logger)
+    private void MapPhoto1To2 (ContactItem source, GoogleContactWrapper target, IEntitySynchronizationLogger logger)
     {
       target.PhotoOrNull = null;
 
@@ -373,12 +376,12 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
               catch (COMException ex)
               {
                 s_logger.Warn ("Could not get property PR_ATTACH_DATA_BIN to export picture for contact.", ex);
-                logger.LogMappingWarning ("Could not get property PR_ATTACH_DATA_BIN to export picture for contact.", ex);
+                logger.LogWarning ("Could not get property PR_ATTACH_DATA_BIN to export picture for contact.", ex);
               }
               catch (System.UnauthorizedAccessException ex)
               {
                 s_logger.Warn ("Could not access PR_ATTACH_DATA_BIN to export picture for contact.", ex);
-                logger.LogMappingWarning ("Could not get property PR_ATTACH_DATA_BIN to export picture for contact.", ex);
+                logger.LogWarning ("Could not get property PR_ATTACH_DATA_BIN to export picture for contact.", ex);
               }
             }
           }
@@ -386,7 +389,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
       }
     }
 
-    private void MapEmailAddresses1To2 (ContactItem source, Contact target, IEntityMappingLogger logger)
+    private void MapEmailAddresses1To2 (ContactItem source, Contact target, IEntitySynchronizationLogger logger)
     {
       target.Emails.Clear();
 
@@ -403,7 +406,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
           catch (COMException ex)
           {
             s_logger.Warn ("Could not get property PR_EMAIL1ADDRESS for Email1Address", ex);
-            logger.LogMappingWarning ("Could not get property PR_EMAIL1ADDRESS for Email1Address", ex);
+            logger.LogWarning ("Could not get property PR_EMAIL1ADDRESS for Email1Address", ex);
           }
         }
         else
@@ -434,7 +437,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
           catch (COMException ex)
           {
             s_logger.Warn ("Could not get property PR_EMAIL2ADDRESS for Email2Address", ex);
-            logger.LogMappingWarning ("Could not get property PR_EMAIL2ADDRESS for Email2Address", ex);
+            logger.LogWarning ("Could not get property PR_EMAIL2ADDRESS for Email2Address", ex);
           }
         }
         else
@@ -465,7 +468,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
           catch (COMException ex)
           {
             s_logger.Warn ("Could not get property PR_EMAIL3ADDRESS for Email3Address", ex);
-            logger.LogMappingWarning ("Could not get property PR_EMAIL3ADDRESS for Email3Address", ex);
+            logger.LogWarning ("Could not get property PR_EMAIL3ADDRESS for Email3Address", ex);
           }
         }
         else
@@ -680,7 +683,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
       throw new NotImplementedException (string.Format ("Mapping for value '{0}' not implemented.", value));
     }
 
-    public Task<IContactItemWrapper> Map2To1 (GoogleContactWrapper sourceWrapper, IContactItemWrapper target, IEntityMappingLogger logger, IGoogleContactContext context)
+    public Task<IContactItemWrapper> Map2To1 (GoogleContactWrapper sourceWrapper, IContactItemWrapper target, IEntitySynchronizationLogger logger, IGoogleContactContext context)
     {
       var source = sourceWrapper.Contact;
 
@@ -870,8 +873,11 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
       }
     }
 
-    private static void MapAnniversary2To1(IContactItemWrapper target, Contact source, IEntityMappingLogger logger)
+    private void MapAnniversary2To1(IContactItemWrapper target, Contact source, IEntitySynchronizationLogger logger)
     {
+      if (!_configuration.MapAnniversary)
+        return;
+
       try
       {
         var googleAnniversary = source.ContactEntry.Events.FirstOrDefault(e => e.Relation != null && e.Relation.Equals(REL_ANNIVERSARY));
@@ -889,11 +895,11 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
       catch (System.Exception ex)
       {
         s_logger.Warn("Anniversary couldn't be updated from Google to Outlook for '" + target.Inner.FileAs + "': " + ex.Message, ex);
-        logger.LogMappingWarning("Anniversary couldn't be updated from Google to Outlook for '" + target.Inner.FileAs + "': " + ex.Message, ex);
+        logger.LogWarning("Anniversary couldn't be updated from Google to Outlook for '" + target.Inner.FileAs + "': " + ex.Message, ex);
       }
     }
 
-    private void MapBirthday2To1(IContactItemWrapper target, Contact source, IEntityMappingLogger logger)
+    private void MapBirthday2To1(IContactItemWrapper target, Contact source, IEntitySynchronizationLogger logger)
     {
       if (!_configuration.MapBirthday)
         return;
@@ -909,12 +915,12 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
           catch (COMException ex)
           {
             s_logger.Warn("Could not update contact birthday.", ex);
-            logger.LogMappingWarning("Could not update contact birthday.", ex);
+            logger.LogWarning("Could not update contact birthday.", ex);
           }
           catch (OverflowException ex)
           {
             s_logger.Warn("Contact birthday has invalid value.", ex);
-            logger.LogMappingWarning("Contact birthday has invalid value.", ex);
+            logger.LogWarning("Contact birthday has invalid value.", ex);
           }
         }
       }
@@ -924,7 +930,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
       }
     }
 
-    private void MapPhoto2To1 (GoogleContactWrapper source, ContactItem target, IEntityMappingLogger logger)
+    private void MapPhoto2To1 (GoogleContactWrapper source, ContactItem target, IEntitySynchronizationLogger logger)
     {
       if (source.PhotoOrNull != null)
       {
@@ -941,14 +947,14 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
           catch (COMException x)
           {
             s_logger.Warn ("Could not add picture for contact.", x);
-            logger.LogMappingWarning ("Could not add picture for contact.", x);
+            logger.LogWarning ("Could not add picture for contact.", x);
           }
           File.Delete (picturePath);
         }
         catch (System.Exception ex)
         {
           s_logger.Warn ("Could not add picture for contact.", ex);
-          logger.LogMappingWarning ("Could not add picture for contact.", ex);
+          logger.LogWarning ("Could not add picture for contact.", ex);
         }
       }
       else
@@ -962,7 +968,7 @@ namespace CalDavSynchronizer.Implementation.GoogleContacts
           catch (COMException x)
           {
             s_logger.Warn ("Could not remove picture for contact.", x);
-            logger.LogMappingWarning ("Could not remove picture for contact.", x);
+            logger.LogWarning ("Could not remove picture for contact.", x);
           }
         }
       }

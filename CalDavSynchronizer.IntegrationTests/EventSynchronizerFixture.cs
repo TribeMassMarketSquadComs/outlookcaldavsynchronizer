@@ -425,14 +425,15 @@ namespace CalDavSynchronizer.IntegrationTests
                     c.Events.Remove(master);
                     return Task.FromResult(c);
                 },
-                NullEventSynchronizationContext.Instance);
+                NullEventSynchronizationContext.Instance,
+                NullEntitySynchronizationLogger.Instance);
 
             // Now a server event was set up without an master event
             var report = await synchronizer.Synchronize();
 
             Assert.That(report.HasErrors, Is.False);
             Assert.That(
-                report.EntitySynchronizationReports.SingleOrDefault()?.MappingWarnings.FirstOrDefault(w => w == "CalDav Ressources contains only exceptions. Reconstructing master event."),
+                report.EntitySynchronizationReports.SingleOrDefault()?.Warnings.FirstOrDefault(w => w == "CalDav Ressources contains only exceptions. Reconstructing master event."),
                 Is.Not.Null);
 
             using (var outlookEvent = (await synchronizer.Outlook.GetAllEntities()).Single().Entity)

@@ -1016,7 +1016,7 @@ namespace Thought.vCards
 				}
 
 			} while (property != null);
-
+		  
 		}
 
 		#endregion
@@ -1082,6 +1082,12 @@ namespace Thought.vCards
 				case "ADR":
 					ReadInto_ADR(card, property);
 					break;
+
+        case "ANNIVERSARY":
+        case "X-ANNIVERSARY":
+        case "X-MS-ANNIVERSARY":
+          ReadInto_ANNIVERSARY(card, property);
+          break;
 
 				case "BDAY":
 					ReadInto_BDAY(card, property);
@@ -1349,14 +1355,48 @@ namespace Thought.vCards
 
 		}
 
-		#endregion
+    #endregion
 
-		#region [ ReadInto_BDAY ]
+	  #region [ ReadInto_ANNIVERSARY ]
 
-		/// <summary>
-		///     Reads the BDAY property.
-		/// </summary>
-		private void ReadInto_BDAY(vCard card, vCardProperty property)
+	  /// <summary>
+	  ///     Reads the ANNIVERSARY property.
+	  /// </summary>
+	  private void ReadInto_ANNIVERSARY(vCard card, vCardProperty property)
+	  {
+
+	    DateTime anniversary;
+	    if (DateTime.TryParse(property.ToString(), out anniversary))
+	    {
+	      card.Anniversary = anniversary;
+	    }
+	    else
+	    {
+	      if (DateTime.TryParseExact(
+	        property.ToString(),
+	        "yyyyMMdd",
+	        CultureInfo.InvariantCulture,
+	        DateTimeStyles.None,
+	        out anniversary))
+	      {
+	        card.Anniversary = anniversary;
+	      }
+	      else
+	      {
+	        card.Anniversary = null;
+	      }
+	    }
+
+	  }
+
+	  #endregion
+
+    #region [ ReadInto_BDAY ]
+
+    /// <summary>
+    ///     Reads the BDAY property.
+    /// </summary>
+    private void ReadInto_BDAY(vCard card, vCardProperty property)
 		{
 
 			DateTime bday;
@@ -2077,9 +2117,12 @@ namespace Thought.vCards
 			}
 			else
 			{
-				if (property.Value.GetType() == typeof(string))
+				if (property.Value is string data) 
 				{
-					card.Photos.Add(new vCardPhoto((string)property.Value, true));
+				  if (!string.IsNullOrEmpty(data))
+				  {
+				    card.Photos.Add(new vCardPhoto(data, true));
+				  }
 				}
 				else if (((byte[])property.Value).Length >0)
 				{
