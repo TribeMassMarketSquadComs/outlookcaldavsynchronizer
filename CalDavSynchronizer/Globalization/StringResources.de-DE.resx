@@ -408,7 +408,7 @@ Aktivieren Sie diese Option wenn Clients mit verschiedenen Zeitzonen verwendet w
   <data name="General Logging" xml:space="preserve">
     <value>Generelles Logging</value>
   </data>
-  <data name="- Ressources which are a calendar and an addressbook are not valid!" xml:space="preserve">
+  <data name="- Resources which are a calendar and an addressbook are not valid!" xml:space="preserve">
     <value>- Kalender und Adressbuch Ressourcen sind ungültig!</value>
   </data>
   <data name="Use random string for DAV resource Uri" xml:space="preserve">
@@ -699,7 +699,7 @@ Verwende Standard 'Speichern unter' Einstellung von den globalen Outlook Adressb
   <data name="Sucessfully exported {0} profile(s) to '{1}'." xml:space="preserve">
     <value>{0} Profil(e) erfolgreich exportiert nach '{1}'.</value>
   </data>
-  <data name="- WebDav collection sync ist currently just supported for appointments and contacts." xml:space="preserve">
+  <data name="- WebDav collection sync is currently just supported for appointments and contacts." xml:space="preserve">
     <value>- WebDav Collection Sync wird momentan nur für Kalender und Adressbücher unterstützt.</value>
   </data>
   <data name="StartTime:" xml:space="preserve">
@@ -711,7 +711,7 @@ Verwende Standard 'Speichern unter' Einstellung von den globalen Outlook Adressb
   <data name="Show advanced settings as default" xml:space="preserve">
     <value>Zeige erweiterte Einstellungen standardmäßig an</value>
   </data>
-  <data name="No ressource selected!" xml:space="preserve">
+  <data name="No resource selected!" xml:space="preserve">
     <value>Keine Ressource ausgewählt!</value>
   </data>
   <data name="Error while trying to fetch the news.\r\nPlease see logfile for details." xml:space="preserve">
@@ -903,7 +903,7 @@ Manuell ausgewählte andere Zeitzonen in Outlook Terminen
 werde auf die erste passende IANA Zeitzone gemappt.</value>
   </data>
   <data name="Enter the DAV resource URL or the server address and discover the available resources. &#xA;If you leave the DAV URL empty it can also be discovered from the email address via DNS lookups." xml:space="preserve">
-    <value>Gebn Sie die DAV Ressource URL oder Serveradresse ein und suche nach verfügbaren Ressourcen. 
+    <value>Geben Sie die DAV Ressource URL oder Serveradresse ein und suche nach verfügbaren Ressourcen. 
 Wenn die DAV URL leer gelassen wird kann diese auch durch DNS Abfragen aus der Email Adresse gefunden werden.</value>
   </data>
   <data name="No color set for updating the server calendar color!" xml:space="preserve">
@@ -935,9 +935,9 @@ und zweite Outlook Email Adresse zu vCard Email mit TYPE HOME anstelle von umgek
     <value>Aktiviere Client Zertifikate im Automatik Modus.
 Das verfügbare Zertifikat vom Benutzerstore wird automatisch verwendet.</value>
   </data>
-  <data name="Enter the email address of the server identity. &#xA;It can also be used to discover the DAV URL if you leave the URL textbox empty." xml:space="preserve">
-    <value>Geben Sie die Email Adresse der Serveridentität an. 
-Damit kann auch die DAV URL gefunden werden, wenn diese leer gelassen wird.</value>
+  <data name="Enter the email address of the server identity of the calendar owner. Will be auto-detected if available.&#xA;It can also be used to discover the DAV URL if you leave the URL textbox empty." xml:space="preserve">
+    <value>Geben Sie die Email Adresse des Kalendereigentümers am Server an, es wird versucht, diese beim Testen der Einstellungen automatisch auszufüllen. 
+Außerdem kann über die Email Adresse auch die DAV URL gefunden werden, wenn diese leer gelassen wird.</value>
   </data>
   <data name="Get IMAP/POP3 account settings" xml:space="preserve">
     <value>Lade IMAP/POP3 Account Einstellungen</value>
@@ -1106,7 +1106,7 @@ anstelle von X-PROTOCOL wie z.B. X-AIM (wird von manchen Servern wie z.B. SOGo n
   <data name="DAV X-attribute" xml:space="preserve">
     <value>DAV X-Attribut</value>
   </data>
-  <data name="Not supported in OL 2007." xml:space="preserve">
+  <data name="Not supported in Outlook 2007." xml:space="preserve">
     <value>Wird in Outlook 2007 nicht unterstützt.</value>
   </data>
   <data name="Waiting for newer version than '{0}'." xml:space="preserve">
@@ -1247,7 +1247,7 @@ Sollte Fehlerreports vermeiden wenn das Netzwerk nicht verfügbar ist z.B. kurz 
   <data name="You need to restart Outlook after installing the new version!" xml:space="preserve">
     <value>Outlook muss nach der Installation der neuen Version neu gestartet werden!</value>
   </data>
-  <data name="- The chunk size hast to be 1 or greater." xml:space="preserve">
+  <data name="- The chunk size has to be 1 or greater." xml:space="preserve">
     <value>- Die Blockgröße muss &gt;= 1 sein.</value>
   </data>
   <data name="WebDAV-Sync is a protocol extension that is defined in RFC 6578 and not supported by all servers.&#xA;Test or discover settings will check if this is supported.&#xA;This option can speed up the detection of server changes dramatically but excludes the time range filter." xml:space="preserve">
@@ -1335,8 +1335,8 @@ Andere Protokolle können mittels protocol: address hinzugefügt werden</value>
   <data name="Assign Easy Project resources to different Outlook folders" xml:space="preserve">
     <value>Weise Easy Project Resourcen verschiedenen Outlook Foldern zu</value>
   </data>
-  <data name="CalDavSynchronizer - Synchronizing..." xml:space="preserve">
-    <value>CalDavSynchronizer - Synchronisiere...</value>
+  <data name="CalDav Synchronizer - Synchronizing..." xml:space="preserve">
+    <value>CalDav Synchronizer - Synchronisiere...</value>
   </data>
   <data name="Export profiles" xml:space="preserve">
     <value>Exportiere Profile</value>
@@ -1403,5 +1403,38 @@ Andere Protokolle können mittels protocol: address hinzugefügt werden</value>
   </data>
   <data name="Map Outlook Public flag to default instead of PUBLIC" xml:space="preserve">
     <value>Synchronisiere öffentliche Outlook Termine auf Standard Sichtbarkeit anstelle von PUBLIC</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>Zugriff</value>
+  </data>
+  <data name="Act on behalf of server identity" xml:space="preserve">
+    <value>Handle im Namen der Serveridentität</value>
+  </data>
+  <data name="Set server identity as organizer of meeting and Outlook identity as delegate acting on behalf of it (SENT-BY).&#xA;Useful when Outlook and server identity do not match to avoid invites sent by the wrong email&#xA;or if meetings are created in a shared calendar on behalf of the calendar owner." xml:space="preserve">
+    <value>Verwende Server Email als Organisator für Meetings und Outlook Identität als Vertretung (SENT-BY).
+Sinnvoll wenn Outlook und Server Email Adressen unterschiedlich sind 
+und Einladungsmails nicht von der falschen Adresse gesendet werden sollen
+bzw. wenn ein Meeting in einem freigegebenen Kalender im Namen des Besitzers erstellt werden soll. 
+    </value>
+  </data>
+  <data name="The calendar is shared from '{0}', enabling scheduling option 'act on behalf of server identity'!" xml:space="preserve">
+    <value>Der Kalender ist freigegeben von '{0}', aktiviere Meeting Einstellung 'Handle im Namen der Serveridentität'!</value>
+  </data>
+  <data name="Map Anniversary" xml:space="preserve">
+    <value>Synchronisiere Jahrestage</value>
+  </data>
+  <data name="Outlook automatically creates anniversary appointments in your calendar &#xA;when the anniversary is added to a contact item." xml:space="preserve">
+    <value>Outlook erstellt automatisch einen Termin im Kalender wenn ein Jahrestag bei einem Kontakt hinzugefügt wird.</value>
+  </data>
+  <data name="Reminder Settings" xml:space="preserve">
+    <value>Erinnerungen Einstellungen</value>
+  </data>
+  <data name="Map reminder as DATE-TIME value" xml:space="preserve">
+    <value>Synchronisiere Erinnerung als DATE-TIME Wert</value>
+  </data>
+  <data name="Map Outlook reminder as absolute DATE-TIME value instead of relative to start or due date.&#xA;Needed for iOS compatibility." xml:space="preserve">
+    <value>Synchronisiere Outlook Erinnerung als absoluten DATE-TIME Wert anstelle von relativ zu Start oder Fällig Datum.
+Notwendig für Kompatibilität mit iOS Geräten.
+    </value>
   </data>
 </root>

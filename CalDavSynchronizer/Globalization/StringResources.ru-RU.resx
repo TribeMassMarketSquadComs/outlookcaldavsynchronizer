@@ -393,7 +393,7 @@
   <data name="General Logging" xml:space="preserve">
     <value>Основные настройки журналирования</value>
   </data>
-  <data name="- Ressources which are a calendar and an addressbook are not valid!" xml:space="preserve">
+  <data name="- Resources which are a calendar and an addressbook are not valid!" xml:space="preserve">
     <value>Сетевые источники календаря и адресной книги неверны!</value>
   </data>
   <data name="Use random string for DAV resource Uri" xml:space="preserve">
@@ -669,7 +669,7 @@
   <data name="Sucessfully exported {0} profile(s) to '{1}'." xml:space="preserve">
     <value>Успешно экспортировано {0} профиль(ей) в '{1}'.</value>
   </data>
-  <data name="- WebDav collection sync ist currently just supported for appointments and contacts." xml:space="preserve">
+  <data name="- WebDav collection sync is currently just supported for appointments and contacts." xml:space="preserve">
     <value>WebDav collection sync в настоящее время поддерживается только для событий и контактов.</value>
   </data>
   <data name="StartTime:" xml:space="preserve">
@@ -681,7 +681,7 @@
   <data name="Show advanced settings as default" xml:space="preserve">
     <value>Показывать расширенные настройки по умолчанию</value>
   </data>
-  <data name="No ressource selected!" xml:space="preserve">
+  <data name="No resource selected!" xml:space="preserve">
     <value>Не выбран ни один источник!</value>
   </data>
   <data name="Error while trying to fetch the news.\r\nPlease see logfile for details." xml:space="preserve">
@@ -885,8 +885,9 @@
   <data name="Enable client certificates with automatic mode.&#xA;The available client certificates from the user store will be automatically provided." xml:space="preserve">
     <value>Активировать сертификаты клиентов в автоматическом режиме. Доступные сертификаты клиентов из хранилища пользователя будут предоставлены автоматически.</value>
   </data>
-  <data name="Enter the email address of the server identity. &#xA;It can also be used to discover the DAV URL if you leave the URL textbox empty." xml:space="preserve">
-    <value>Введите адрес электронной почты учётной записи на сервере. Это также бывает полезно при автоопределении пути URL на сервере DAV, если оставить поле URL пустым.</value>
+  <data name="Enter the email address of the server identity of the calendar owner. Will be auto-detected if available.&#xA;It can also be used to discover the DAV URL if you leave the URL textbox empty." xml:space="preserve">
+    <value>Введите адрес электронной почты учётной записи владельца календаря на сервере. Будет автоматически определено, если доступно.
+Это также бывает полезно при автоопределении пути URL на сервере DAV, если оставить поле URL пустым.</value>
   </data>
   <data name="Get IMAP/POP3 account settings" xml:space="preserve">
     <value>Получить настройки учётной записи IMAP/POP3</value>
@@ -1054,7 +1055,7 @@
   <data name="DAV X-attribute" xml:space="preserve">
     <value>Атрибуты DAV X-</value>
   </data>
-  <data name="Not supported in OL 2007." xml:space="preserve">
+  <data name="Not supported in Outlook 2007." xml:space="preserve">
     <value>Не поддерживается в MS Outlook 2007.</value>
   </data>
   <data name="Waiting for newer version than '{0}'." xml:space="preserve">
@@ -1191,7 +1192,7 @@
   <data name="You need to restart Outlook after installing the new version!" xml:space="preserve">
     <value>После установки новой версии требуется перезагрузка MS Outlook!</value>
   </data>
-  <data name="- The chunk size hast to be 1 or greater." xml:space="preserve">
+  <data name="- The chunk size has to be 1 or greater." xml:space="preserve">
     <value>Размер партии должен быть 1 или больше.</value>
   </data>
   <data name="WebDAV-Sync is a protocol extension that is defined in RFC 6578 and not supported by all servers.&#xA;Test or discover settings will check if this is supported.&#xA;This option can speed up the detection of server changes dramatically but excludes the time range filter." xml:space="preserve">
@@ -1273,8 +1274,8 @@
   <data name="Assign Easy Project resources to different Outlook folders" xml:space="preserve">
     <value>Назначить разные источники Easy Project разным папкам MS Outlook</value>
   </data>
-  <data name="CalDavSynchronizer - Synchronizing..." xml:space="preserve">
-    <value>CalDavSynchronizer - Синхронизация...</value>
+  <data name="CalDav Synchronizer - Synchronizing..." xml:space="preserve">
+    <value>CalDav Synchronizer - Синхронизация...</value>
   </data>
   <data name="Export profiles" xml:space="preserve">
     <value>Экспортировать профили</value>
@@ -1341,5 +1342,38 @@
   </data>
   <data name="Map Outlook Public flag to default instead of PUBLIC" xml:space="preserve">
     <value>Установите флаг общедоступный MS Outlook по умолчанию вместо PUBLIC</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>Доступ</value>
+  </data>
+  <data name="Act on behalf of server identity" xml:space="preserve">
+    <value>Действовать от имени личности сервера</value>
+  </data>
+  <data name="Set server identity as organizer of meeting and Outlook identity as delegate acting on behalf of it (SENT-BY).&#xA;Useful when Outlook and server identity do not match to avoid invites sent by the wrong email&#xA;or if meetings are created in a shared calendar on behalf of the calendar owner." xml:space="preserve">
+    <value>Используйте электронную почту сервера в качестве организатора собрания и удостоверение Outlook в качестве прокси (SENT-BY).
+Полезно, если адреса электронной почты Outlook и сервера разные
+и приглашения не должны быть отправлены с неправильного адреса
+или если вы хотите создать встречу в календаре для владельца.
+    </value>
+  </data>
+  <data name="The calendar is shared from '{0}', enabling scheduling option 'act on behalf of server identity'!" xml:space="preserve">
+    <value>Календарь доступен из '{0}', что позволяет включить планирование 'Действовать от имени личности сервера'!</value>
+  </data>
+  <data name="Map Anniversary" xml:space="preserve">
+    <value>Указать годовщину</value>
+  </data>
+  <data name="Outlook automatically creates anniversary appointments in your calendar &#xA;when the anniversary is added to a contact item." xml:space="preserve">
+    <value>MS Outlook автоматически создаёт события дней  в вашем годовщину календаре, если день годовщину добавлен в поле контакта.</value>
+  </data>
+  <data name="Reminder Settings" xml:space="preserve">
+    <value>настройки напоминание</value>
+  </data>
+  <data name="Map reminder as DATE-TIME value" xml:space="preserve">
+    <value>Указать напоминание как значение DATE-TIME</value>
+  </data>
+  <data name="Map Outlook reminder as absolute DATE-TIME value instead of relative to start or due date.&#xA;Needed for iOS compatibility." xml:space="preserve">
+    <value>Указать Outlook напоминание как абсолютного значение DATE-TIME вместо ссылки на дату начала или дату окончания.
+    Необходим для совместимости с iOS.
+    </value>
   </data>
 </root>

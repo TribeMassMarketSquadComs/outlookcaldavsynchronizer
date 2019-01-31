@@ -63,6 +63,7 @@ namespace CalDavSynchronizer.ProfileTypes
       data.MapAttendees = true;
       data.ScheduleAgentClient = true;
       data.SendNoAppointmentNotifications = false;
+      data.OrganizerAsDelegate = false;
       data.MapBody = true;
       data.MapRtfBodyToXAltDesc = false;
       data.MapXAltDescToRtfBody = false;
@@ -107,6 +108,7 @@ namespace CalDavSynchronizer.ProfileTypes
     {
       var data = new TaskMappingConfiguration();
       data.MapReminder = ReminderMapping.JustUpcoming;
+      data.MapReminderAsDateTime = false;
       data.MapPriority = true;
       data.MapBody = true;
       data.MapRecurringTasks = true;

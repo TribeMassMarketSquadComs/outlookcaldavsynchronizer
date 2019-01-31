@@ -138,7 +138,7 @@
   <data name="- Max Report Age must be &gt; 0" xml:space="preserve">
     <value>- L’âge maximum du rapport doit être &gt; 0.</value>
   </data>
-  <data name="- Ressources which are a calendar and an addressbook are not valid!" xml:space="preserve">
+  <data name="- Resources which are a calendar and an addressbook are not valid!" xml:space="preserve">
     <value>- Les ressources qui sont à la fois calendrier et carnet d'adresses ne sont pas valables!</value>
   </data>
   <data name="- The CalDav/CardDav URL cannot end/start with whitespaces." xml:space="preserve">
@@ -159,7 +159,7 @@
   <data name="- The category name must not contain semicolons." xml:space="preserve">
     <value>- Le nom de catégorie ne peut pas contenir un point-virgule..</value>
   </data>
-  <data name="- The chunk size hast to be 1 or greater." xml:space="preserve">
+  <data name="- The chunk size has to be 1 or greater." xml:space="preserve">
     <value>- La taille du bloc doit être &gt;= 1</value>
   </data>
   <data name="- The Email address is empty." xml:space="preserve">
@@ -204,7 +204,7 @@
   <data name="- There is no Outlook folder selected." xml:space="preserve">
     <value>- Aucun dossier Outlook n'a été sélectionné.</value>
   </data>
-  <data name="- WebDav collection sync ist currently just supported for appointments and contacts." xml:space="preserve">
+  <data name="- WebDav collection sync is currently just supported for appointments and contacts." xml:space="preserve">
     <value>- WebDav Collection Sync ne fonctionne momentanément que pour les calendriers et les carnets d'adresses.</value>
   </data>
   <data name="1 day" xml:space="preserve">
@@ -306,7 +306,7 @@ Les attributs DAV DOIVENT commencer par X-.</value>
   <data name="CalDAV Synchronizer is currently starting up. Please try again, when startup is finished." xml:space="preserve">
     <value>Démarrage de CalDAV Synchronizer. Veuillez patienter jusqu'à la fin de l'initialisation.</value>
   </data>
-  <data name="CalDavSynchronizer - Synchronizing..." xml:space="preserve">
+  <data name="CalDav Synchronizer - Synchronizing..." xml:space="preserve">
     <value>CalDav Synchronizer - Synchronisation...</value>
   </data>
   <data name="Calendar Color" xml:space="preserve">
@@ -579,8 +579,8 @@ Utilisé notamment pour Yahoo et cPanel Horde Server.</value>
     <value>Saisir l'URL DAV ou l'adresse du serveur et rechercher les ressources disponibles. 
 Si l'URL DAV n'est pas renseignée, elle peut aussi être trouvée par des requêtes DNS de l'adresse e-mail.</value>
   </data>
-  <data name="Enter the email address of the server identity. &#xA;It can also be used to discover the DAV URL if you leave the URL textbox empty." xml:space="preserve">
-    <value>Veuillez saisir l'adresse e-mail de l'identité du serveur. 
+  <data name="Enter the email address of the server identity of the calendar owner. Will be auto-detected if available.&#xA;It can also be used to discover the DAV URL if you leave the URL textbox empty." xml:space="preserve">
+    <value>Veuillez saisir l'adresse e-mail de l'identité du serveur du propriétaire du calendrier. Il sera détecté automatiquement si disponible.
 Cela permet de trouver l'URL DAV lorsque cette dernière n'est pas renseignée.</value>
   </data>
   <data name="Enter the name of the Outlook category for filtering. &#xA;If the category does not exist it will be created in Outlook." xml:space="preserve">
@@ -879,13 +879,13 @@ Indiqué lorsqu'un autre client mobile diminue par exemple la résolution de la 
   <data name="No resources were found via autodiscovery!" xml:space="preserve">
     <value>Aucune ressource trouvée lors de la recherche automatique!</value>
   </data>
-  <data name="No ressource selected!" xml:space="preserve">
+  <data name="No resource selected!" xml:space="preserve">
     <value>Aucune ressource actionnée!</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Aucun/e</value>
   </data>
-  <data name="Not supported in OL 2007." xml:space="preserve">
+  <data name="Not supported in Outlook 2007." xml:space="preserve">
     <value>Pas compatible avec Outlook 2007.</value>
   </data>
   <data name="OK" xml:space="preserve">
@@ -1392,5 +1392,38 @@ X-PROTOCOL comme X-AIM (incompatible avec certains serveurs comme SOGo)</value>
   </data>
   <data name="You need to restart Outlook after installing the new version!" xml:space="preserve">
     <value>Outlook doit être redémarré après l'installation de la nouvelle version!</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>Accès</value>
+  </data>
+  <data name="Act on behalf of server identity" xml:space="preserve">
+    <value>Agir pour le compte de l'identité du serveur</value>
+  </data>
+  <data name="Set server identity as organizer of meeting and Outlook identity as delegate acting on behalf of it (SENT-BY).&#xA;Useful when Outlook and server identity do not match to avoid invites sent by the wrong email&#xA;or if meetings are created in a shared calendar on behalf of the calendar owner." xml:space="preserve">
+    <value>Utilisez le courrier électronique du serveur en tant qu'organisateur de la réunion et l'identité Outlook en tant que proxy (SENT-BY).
+Utile si les adresses de messagerie d'Outlook et du serveur sont différentes
+et les courriels d'invitation ne doivent pas être envoyés à partir de la mauvaise adresse
+ou si vous souhaitez créer une réunion sur un calendrier partagé pour le propriétaire.
+    </value>
+  </data>
+  <data name="The calendar is shared from '{0}', enabling scheduling option 'act on behalf of server identity'!" xml:space="preserve">
+    <value>Le calendrier est partagé à partir de '{0}', activation de l'option de Paramètres réunion 'Agir pour le compte de l'identité du serveur'!</value>
+  </data>
+  <data name="Map Anniversary" xml:space="preserve">
+    <value>Synchroniser les dates d'anniversaire de mariage</value>
+  </data>
+  <data name="Outlook automatically creates anniversary appointments in your calendar &#xA;when the anniversary is added to a contact item." xml:space="preserve">
+    <value>Outlook crée automatiquement un événement dans le calendrier à la saisie de la date d'anniversaire de mariage d'un contact.</value>
+  </data>
+  <data name="Reminder Settings" xml:space="preserve">
+    <value>Paramètres de notification</value>
+  </data>
+  <data name="Map reminder as DATE-TIME value" xml:space="preserve">
+    <value>Synchroniser les notifications en tant que valeur DATE-TIME</value>
+  </data>
+  <data name="Map Outlook reminder as absolute DATE-TIME value instead of relative to start or due date.&#xA;Needed for iOS compatibility." xml:space="preserve">
+    <value>Synchroniser les notifications Outlook en tant que valeur absolue DATE-TIME au lieu de la valeur relative à la date de début ou d'échéance.
+Nécessaire pour la compatibilité avec iOS.
+    </value>
   </data>
 </root>
