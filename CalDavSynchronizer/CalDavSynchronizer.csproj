@@ -793,6 +793,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="CalDavSynchronizer_5_TemporaryKey.pfx" />
     <None Include="CalDavSynchronizer_TemporaryKey.pfx" />
     <Compile Include="Ui\SystrayNotification\ITrayNotifier.cs" />
     <Compile Include="Ui\SystrayNotification\NullTrayNotifier.cs" />
@@ -1074,11 +1075,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>CalDavSynchronizer_5_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1DD03B86FE5C780F60AADFD80FC8963626189ECF</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>ACFCC382559EE5F8170A4B1D8DF42D1E249BF425</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestTimestampUrl>http://timestamp.comodoca.com/rfc3161</ManifestTimestampUrl>
